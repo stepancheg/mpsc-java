@@ -16,10 +16,11 @@ public class LockFreeStack<T> {
 
     public void enqueue(T element) {
         LockFreeStack.Node<T> newHead = new LockFreeStack.Node<>();
+        newHead.payload = element;
+
         for (;;) {
             LockFreeStack.Node<T> head = stack.get();
             newHead.next = head;
-            newHead.payload = element;
             newHead.size = head != null ? head.size + 1 : 1;
             if (stack.weakCompareAndSet(head, newHead)) {
                 return;
