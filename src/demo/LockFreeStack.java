@@ -46,11 +46,4 @@ public class LockFreeStack<T> {
         return array;
     }
 
-    private static <T> void reverseArray(T[] array) {
-        for (int i = 0; i != array.length / 2; ++i) {
-            T tmp = array[i];
-            array[i] = array[array.length - 1 - i];
-            array[array.length - 1 - i] = tmp;
-        }
-    }
 }
