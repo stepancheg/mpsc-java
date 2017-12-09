@@ -12,7 +12,7 @@ class LockFreeStackTest {
         stack.enqueue(30);
         stack.enqueue(40);
 
-        Object[] dequeue = stack.dequeue();
+        Object[] dequeue = stack.dequeueAll();
         Integer[] expected = new Integer[] { 10, 20, 30, 40 };
         Assertions.assertArrayEquals(expected, dequeue);
     }
@@ -21,6 +21,6 @@ class LockFreeStackTest {
     void dequeueEmpty() {
         LockFreeStack<Integer> stack = new LockFreeStack<>();
 
-        Assertions.assertEquals(0, stack.dequeue().length);
+        Assertions.assertEquals(0, stack.dequeueAll().length);
     }
 }

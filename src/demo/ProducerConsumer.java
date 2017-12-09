@@ -44,7 +44,7 @@ public class ProducerConsumer<T> {
     private void runConsumer() {
         for (;;) {
             LockSupport.park();
-            T[] elements = (T[]) lockFreeStack.dequeue();
+            T[] elements = (T[]) lockFreeStack.dequeueAll();
             for (T element : elements) {
                 if (element == null) {
                     return;

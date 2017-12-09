@@ -29,7 +29,7 @@ public class LockFreeStack<T> {
 
     private static final Object[] emptyArray = new Object[0];
 
-    public Object[] dequeueAllReverseOrder() {
+    public Object[] dequeueAll() {
         Node<T> node = stack.getAndSet(null);
         if (node == null) {
             return emptyArray;
@@ -39,16 +39,10 @@ public class LockFreeStack<T> {
         T[] array = (T[]) new Object[size];
 
         for (int i = 0; i != size; ++i) {
-            array[i] = node.payload;
+            array[size - 1 - i] = node.payload;
             node = node.next;
         }
 
-        return array;
-    }
-
-    public Object[] dequeue() {
-        Object[] array = dequeueAllReverseOrder();
-        reverseArray(array);
         return array;
     }
 
